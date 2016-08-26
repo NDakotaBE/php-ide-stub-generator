@@ -53,7 +53,7 @@ namespace {{ name }}{
 {{# doccomment }}
 {{{ . | indent.tab_2 }}}
 {{/ doccomment }}
-		function {{#returnsReference}}&{{/returnsReference}}{{ name }}({{# parameters}}{{#typeHint}}{{.}} {{/typeHint}}${{ name }}{{#defaultValue}} = {{.}}{{/defaultValue}}{{#comma}}, {{/comma}}{{/ parameters}}){}
+		{{scope}} function {{#returnsReference}}&{{/returnsReference}}{{ name }}({{# parameters}}{{#typeHint}}{{.}} {{/typeHint}}${{ name }}{{#defaultValue}} = {{.}}{{/defaultValue}}{{#comma}}, {{/comma}}{{/ parameters}}){}
 	{{/ methods }}
 
 	}
