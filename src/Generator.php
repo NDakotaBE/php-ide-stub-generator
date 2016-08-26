@@ -366,23 +366,29 @@ abstract class Generator
     {
         $function_info = array();
 
-        $reflection = &$function_reflection;
+//        var_dump($function_reflection);die();
 
+        $reflection = &$function_reflection;
         $function_info['name'] = $reflection->getName();
         $function_info['short_name'] = $reflection->getShortName();
         $function_info['namespace'] = $reflection->getNamespaceName();
-
         if ($reflection->returnsReference()) {
             $function_info['returnsReference'] = true;
         }
-
         $doccomment = $reflection->getDocComment();
         if ($doccomment !== false) {
             $function_info['doccomment'] = $doccomment;
         }
 
         $function_info['parameters'] = $this->_getParametersData($reflection->getParameters());
-
+        if ($function_info['namespace'] != '') {
+        // Don't use ReflectionFunction if namespace is set
+            $reflectionMethod = new \ReflectionMethod(
+                $function_info['namespace'],
+                $function_info['name']
+            );
+            var_dump($reflectionMethod);die();
+        }
         return $function_info;
     }
 

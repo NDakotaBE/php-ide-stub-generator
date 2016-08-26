@@ -1,11 +1,15 @@
 {
-    "name": "racztiborzoltan/ide-stub-generator",
+    "name": "NDakotaBE/ide-stub-generator",
     "description": "PHP stub file generator",
     "license": "ISC",
     "authors": [
         {
             "name": "Rácz Tibor Zoltán",
             "email": "racztiborzoltan@gmail.com"
+        },
+        {
+            "name": "Mike Swan",
+            "email": "m.swan@outlook.com"
         }
     ],
     "autoload": {
