@@ -34,7 +34,7 @@ class PSR0 extends Generator
     {
         $basedir = str_replace('\\', '/', $basedir);
         if ($basedir[strlen($basedir)-1] !== '/') {
-            throw new \InvalidArgumentException('Trailing slash is important!');
+            $basedir .= '/';
         }
 
         $this->basedir = $basedir;
