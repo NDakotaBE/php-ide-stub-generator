@@ -47,6 +47,13 @@ abstract class Generator
     private $template_variables = array();
 
     /**
+     * The tagToIgnore variable
+     *
+     * @var null|string
+     */
+    private $tagToIgnore = null;
+
+    /**
      * Return list of class names
      *
      * @return array
@@ -54,6 +61,21 @@ abstract class Generator
     public function getClasses()
     {
         return $this->classes;
+    }
+
+    /**
+     * The setTagToIgnore function
+     *
+     * This function provides a way to ignore a tag in docblocks
+     * and thus skipping the adition of the function
+     *
+     * @param string $tag The tag
+     *
+     * @return void
+     */
+    public function setTagToIgnore($tag)
+    {
+        $this->tagToIgnore = $tag;
     }
 
     /**
@@ -301,6 +323,15 @@ abstract class Generator
                 $property_info['doccomment'] = $property->getDocComment();
             }
 
+            if (isset($property_info['doccomment'])
+                && $this->tagToIgnore !== null
+                && stristr($property_info['doccomment'], $this->tagToIgnore)
+            ) {
+                // Don't add an @ignore tag.
+                continue ;
+            }
+
+
             $class_info['properties'][] = $property_info;
         }
 
@@ -317,6 +348,18 @@ abstract class Generator
             $doccomment = $method->getDocComment();
             if ($doccomment !== false) {
                 $method_info['doccomment'] = $doccomment;
+            }
+
+            if ($class_info['short_name'] == 'Etim') {
+                print_r($method_info['doccomment']);
+            }
+
+            if (isset($method_info['doccomment'])
+                && $this->tagToIgnore !== null
+                && stristr($method_info['doccomment'], $this->tagToIgnore)
+            ) {
+                // Don't add an @ignore tag.
+                continue ;
             }
 
             $scope = array();
