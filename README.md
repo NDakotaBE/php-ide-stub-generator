@@ -8,6 +8,26 @@ Base idea: https://gist.github.com/ralphschindler/4757829
 
 See the "examples" directory!!!
 
+### Ignoring certain methods / properties in Classes
+You can now add the possibility to ignore a certain method, by providing the generator with 
+the appropriate data.
+
+If the ignoreTag passed allong is in the DocBlock, the generator will ignore the function and 
+skip it in generation.
+
+```php
+$generator = new Z\IdeStubGenerator\Strategy\PSR0();
+```
+OR
+```php
+$generator = new Z\IdeStubGenerator\Strategy\OneFile();
+```
+
+If you call the `$generator->setTagToIgnore();` function it'll ignore the given tag e.g.:
+```php
+$generator->setTagToIgnore('@ignore');
+```
+
 ### Z\IdeStubGenerator\Strategy\PSR0
 
 ```php

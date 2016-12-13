@@ -67,7 +67,7 @@ abstract class Generator
      * The setTagToIgnore function
      *
      * This function provides a way to ignore a tag in docblocks
-     * and thus skipping the adition of the function
+     * and thus skipping the addition of the function
      *
      * @param string $tag The tag
      *
