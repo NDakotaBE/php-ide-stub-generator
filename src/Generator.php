@@ -443,7 +443,18 @@ abstract class Generator
                 } else {
                     $parameter_info['defaultValue'] = $reflection->getDefaultValue();
                 }
-                $parameter_info['defaultValue'] = preg_replace('#\n|\r\n|\r#', ' ', var_export($parameter_info['defaultValue'], true));
+                if ($parameter_info['defaultValue'] === 0) {
+                    $parameter_info['defaultValue'] = var_export(null, true);
+                } else {
+                    $parameter_info['defaultValue'] = preg_replace(
+                        '#\n|\r\n|\r#',
+                        ' ',
+                        var_export(
+                            $parameter_info['defaultValue'],
+                            true
+                        )
+                    );
+                }
             }
         }
 
